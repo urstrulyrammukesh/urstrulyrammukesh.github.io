@@ -275,6 +275,12 @@
     .reach-ico { font-size: 1.5rem; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 12px; background: var(--accent-dim); flex-shrink: 0; }
     .reach-card small { display: block; font: 600 .7rem var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
     .reach-card b { font-weight: 600; font-size: .98rem; word-break: break-all; }
+    .reach-wide { grid-column: 1 / -1; }
+    .paper-btn { position: relative; z-index: 2; align-self: flex-start; margin-top: 18px; display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 16px; border-radius: 10px; font-weight: 700; font-size: .92rem; color: #0b0f14; background: var(--accent);
+      box-shadow: 0 10px 30px -12px hsla(var(--h), 90%, 55%, .7); transition: transform .15s; }
+    .paper-btn:hover { transform: translateY(-2px); }
+    .paper-btn small { font-weight: 600; opacity: .7; font-size: .75rem; }
     @media (max-width: 560px) { .reach { grid-template-columns: 1fr; } }
     footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: .85rem; font-family: var(--mono); }
     footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
@@ -431,6 +437,7 @@
             <h3><a class="stretch" href="https://github.com/urstrulyrammukesh/clinora" target="_blank" rel="noopener">Clinora</a> <span class="chip" style="vertical-align:middle;margin-left:6px">Founder</span></h3>
             <p>An AI receptionist for clinics. Patients can book visits and video consultations, find doctors, hospitals, labs and colleges, and pay locally, in 139 languages.</p>
             <div class="chips"><span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">HTML/CSS</span><span class="chip">AI</span><span class="chip">PWA</span></div>
+            <a class="paper-btn" href="assets/Clinora-Company-Overview.pdf" target="_blank" rel="noopener">📄 Read the Clinora paper <small>PDF · 31 pages</small></a>
           </article>
           <article class="card reveal tilt">
             <div class="card-top"><span class="card-ico drift" data-depth="14">🔐</span><span class="card-link">repo ↗</span></div>
@@ -506,6 +513,9 @@
           </a>
           <a class="reach-card drift" data-depth="9" id="phoneCard" href="#contact" aria-label="Call Ram Mukesh Yadav">
             <span class="reach-ico">📞</span><span><small>Phone</small><b id="phoneText">tap to show</b></span>
+          </a>
+          <a class="reach-card reach-wide drift" data-depth="7" href="assets/Clinora-Company-Overview.pdf" target="_blank" rel="noopener" aria-label="Read the Clinora company overview PDF">
+            <span class="reach-ico">📄</span><span><small>Clinora company overview</small><b>Read the full paper (PDF, 31 pages)</b></span>
           </a>
         </div>
         <div class="socials">

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ram · CSE @ NIT Srinagar · Aspiring Cybersecurity Engineer</title>
+  <meta name="description" content="Ram is a Computer Science & Engineering student at NIT Srinagar and an aspiring cybersecurity engineer. Projects: Clinora, cybersecurity-journey, LeetCode solutions in Python." />
+  <meta name="keywords" content="Ram, urstrulyrammukesh, NIT Srinagar, CSE, Computer Science, cybersecurity, Python, DSA, portfolio" />
+  <meta name="author" content="Ram (urstrulyrammukesh)" />
+  <link rel="canonical" href="https://urstrulyrammukesh.github.io/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Ram · CSE @ NIT Srinagar · Aspiring Cybersecurity Engineer" />
+  <meta property="og:description" content="Portfolio of Ram, Computer Science & Engineering student at NIT Srinagar, building Clinora and learning cybersecurity." />
+  <meta property="og:url" content="https://urstrulyrammukesh.github.io/" />
+  <meta property="og:image" content="https://github.com/urstrulyrammukesh.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="theme-color" content="#0b0f14" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0f14'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='monospace' font-size='34' font-weight='700' fill='%239fef00'%3E%3E_%3C/text%3E%3C/svg%3E" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ram",
+    "alternateName": "urstrulyrammukesh",
+    "url": "https://urstrulyrammukesh.github.io/",
+    "image": "https://github.com/urstrulyrammukesh.png",
+    "jobTitle": "Computer Science & Engineering student",
+    "description": "CSE student at NIT Srinagar and aspiring cybersecurity engineer.",
+    "affiliation": { "@type": "CollegeOrUniversity", "name": "National Institute of Technology Srinagar" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Srinagar", "addressCountry": "IN" },
+    "knowsAbout": ["Cybersecurity", "Python", "Data Structures and Algorithms", "Web Development"],
+    "sameAs": [
+      "https://github.com/urstrulyrammukesh",
+      "https://www.instagram.com/urstrulyrammukesh",
+      "https://www.youtube.com/@urstrulyrammukeshz"
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --bg-2: #10161d;
+      --card: #131b24;
+      --line: #1f2a36;
+      --text: #e6edf3;
+      --muted: #8b98a6;
+      --accent: #9fef00;
+      --accent-dim: rgba(159, 239, 0, 0.12);
+      --blue: #58a6ff;
+      --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+      --radius: 14px;
+      --max: 1080px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(159, 239, 0, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(159, 239, 0, 0.035) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(ellipse at top, #000 20%, transparent 70%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    /* Nav */
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(11, 15, 20, 0.82);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .logo { font-family: var(--mono); font-weight: 700; color: var(--accent); }
+    .logo span { color: var(--text); }
+    .nav-links { display: flex; gap: 26px; font-size: 0.92rem; color: var(--muted); }
+    .nav-links a:hover { color: var(--text); }
+
+    /* Hero */
+    .hero { padding: 96px 0 72px; }
+    .hero-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 48px; align-items: center; }
+    .tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--mono); font-size: 0.8rem;
+      color: var(--accent); background: var(--accent-dim);
+      border: 1px solid rgba(159, 239, 0, 0.3);
+      padding: 6px 12px; border-radius: 999px;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+    h1 { font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.05; margin: 22px 0 14px; letter-spacing: -0.02em; }
+    h1 .hl { color: var(--accent); }
+    .sub { font-size: 1.15rem; color: var(--muted); max-width: 34ch; margin: 0 0 30px; }
+    .sub strong { color: var(--text); font-weight: 600; }
+    .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 20px; border-radius: 10px;
+      font-weight: 600; font-size: 0.95rem;
+      border: 1px solid var(--line);
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+    }
+    .btn:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .btn.primary { background: var(--accent); color: #0b0f14; border-color: var(--accent); }
+    .btn svg { width: 18px; height: 18px; }
+
+    .terminal {
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(159, 239, 0, 0.05);
+      overflow: hidden;
+      font-family: var(--mono);
+      font-size: 0.88rem;
+    }
+    .term-bar { display: flex; gap: 7px; padding: 12px 14px; border-bottom: 1px solid var(--line); background: #0e141a; }
+    .term-bar i { width: 11px; height: 11px; border-radius: 50%; background: #2b3540; }
+    .term-bar i:nth-child(1) { background: #ff5f57; }
+    .term-bar i:nth-child(2) { background: #febc2e; }
+    .term-bar i:nth-child(3) { background: #28c840; }
+    .term-body { padding: 18px 20px 22px; min-height: 250px; }
+    .term-body p { margin: 0 0 6px; white-space: pre-wrap; }
+    .prompt { color: var(--accent); }
+    .k { color: var(--blue); }
+    .m { color: var(--muted); }
+    .cursor { display: inline-block; width: 8px; height: 1.05em; background: var(--accent); vertical-align: text-bottom; animation: blink 1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* Sections */
+    section { padding: 72px 0; border-top: 1px solid var(--line); }
+    .sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 34px; }
+    .sec-num { font-family: var(--mono); color: var(--accent); font-size: 0.95rem; }
+    h2 { font-size: 1.9rem; margin: 0; letter-spacing: -0.01em; }
+
+    .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; }
+    .about p { color: var(--muted); font-size: 1.05rem; margin: 0 0 16px; }
+    .about p strong { color: var(--text); }
+    .facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+    .facts li {
+      display: flex; gap: 14px; align-items: center;
+      background: var(--card); border: 1px solid var(--line);
+      padding: 14px 16px; border-radius: 12px;
+    }
+    .facts .ico { font-size: 1.3rem; }
+    .facts small { display: block; color: var(--muted); font-size: 0.8rem; }
+
+    /* Projects */
+    .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .card {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex; flex-direction: column;
+      transition: transform .2s ease, border-color .2s ease;
+    }
+    .card:hover { transform: translateY(-4px); border-color: rgba(159, 239, 0, 0.45); }
+    .card.featured { grid-column: span 2; background: linear-gradient(135deg, #131b24 0%, #15201a 100%); }
+    .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .card-ico { font-size: 1.6rem; }
+    .card-link { color: var(--muted); font-family: var(--mono); font-size: 0.8rem; }
+    .card:hover .card-link { color: var(--accent); }
+    .card h3 { margin: 0 0 8px; font-size: 1.25rem; }
+    .card p { margin: 0 0 18px; color: var(--muted); flex: 1; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      font-family: var(--mono); font-size: 0.75rem;
+      color: var(--accent); background: var(--accent-dim);
+      padding: 4px 10px; border-radius: 6px;
+    }
+    .card a.stretch::after { content: ""; position: absolute; inset: 0; }
+
+    /* Skills */
+    .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .skill-box { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+    .skill-box h3 { margin: 0 0 14px; font-size: 1rem; font-family: var(--mono); color: var(--accent); }
+    .skill-box .chips .chip { color: var(--text); background: #1a2430; }
+
+    /* Roadmap */
+    .roadmap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; counter-reset: step; }
+    .step { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; position: relative; }
+    .step.now { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
+    .step .badge { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
+    .step.now .badge { color: var(--accent); }
+    .step h3 { margin: 8px 0 10px; font-size: 1.05rem; }
+    .step ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 0.9rem; }
+
+    /* Contact */
+    .contact { text-align: center; }
+    .contact p { color: var(--muted); max-width: 46ch; margin: 0 auto 28px; font-size: 1.05rem; }
+    .socials { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+
+    footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: 0.85rem; font-family: var(--mono); }
+    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 860px) {
+      .hero { padding: 56px 0 48px; }
+      .hero-grid, .about-grid { grid-template-columns: 1fr; }
+      .projects { grid-template-columns: 1fr; }
+      .card.featured { grid-column: auto; }
+      .skills { grid-template-columns: 1fr; }
+      .roadmap { grid-template-columns: 1fr 1fr; }
+      .nav-links { gap: 16px; font-size: 0.85rem; }
+      .nav-links .hide-sm { display: none; }
+    }
+    @media (max-width: 520px) {
+      .roadmap { grid-template-columns: 1fr; }
+      .wrap { padding: 0 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .cursor { animation: none; }
+      .btn, .card { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap">
+      <a href="#top" class="logo">&gt;_ <span>ram</span></a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills" class="hide-sm">Skills</a>
+        <a href="#security" class="hide-sm">Security</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="tag"><span class="dot"></span>CSE @ NIT Srinagar</span>
+        <h1>Hi, I'm Ram.<br />Future <span class="hl">cybersecurity</span> engineer.</h1>
+        <p class="sub">Computer Science &amp; Engineering student at <strong>NIT Srinagar</strong>. I build with <strong>Python</strong> and the web, and I'm learning to break and defend systems.</p>
+        <div class="cta">
+          <a class="btn primary" href="#projects">See my work</a>
+          <a class="btn" href="https://github.com/urstrulyrammukesh" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="terminal" role="img" aria-label="Terminal showing whoami: Ram, CSE student at NIT Srinagar, aspiring cybersecurity engineer">
+        <div class="term-bar"><i></i><i></i><i></i></div>
+        <div class="term-body" id="term"></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="about">
+      <div class="wrap">
+        <div class="sec-head reveal"><span class="sec-num">01.</span><h2>About me</h2></div>
+        <div class="about-grid">
+          <div class="about reveal">
+            <p>I'm Ram, a <strong>B.Tech Computer Science &amp; Engineering</strong> student at the <strong>National Institute of Technology (NIT) Srinagar</strong>.</p>
+            <p>I like building things that solve real problems. My biggest project is <strong>Clinora</strong>, an AI receptionist that helps clinics book visits and answer patients in many languages.</p>
+            <p>My goal is <strong>cybersecurity</strong>. I'm learning networking, Linux and web security, practising on CTF platforms, and documenting every step in public so others can learn with me.</p>
+          </div>
+          <ul class="facts reveal">
+            <li><span class="ico">🎓</span><div>B.Tech, Computer Science &amp; Engineering<small>NIT Srinagar</small></div></li>
+            <li><span class="ico">🔐</span><div>Aspiring Cybersecurity Engineer<small>Networking · Linux · OWASP · CTFs</small></div></li>
+            <li><span class="ico">🐍</span><div>Python &amp; DSA<small>Problem solving every week</small></div></li>
+            <li><span class="ico">📍</span><div>Srinagar, India<small>Open to internships</small></div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <div class="sec-head reveal"><span class="sec-num">02.</span><h2>Projects</h2></div>
+        <div class="projects">
+          <article class="card featured reveal">
+            <div class="card-top"><span class="card-ico">🏥</span><span class="card-link">github.com/…/clinora ↗</span></div>
+            <h3><a class="stretch" href="https://github.com/urstrulyrammukesh/clinora" target="_blank" rel="noopener">Clinora</a></h3>
+            <p>An AI receptionist for clinics. Patients can book visits and video consultations, find doctors, hospitals, labs and colleges, and pay locally, in 139 languages.</p>
+            <div class="chips"><span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">HTML/CSS</span><span class="chip">AI</span><span class="chip">PWA</span></div>
+          </article>
+          <article class="card reveal">
+            <div class="card-top"><span class="card-ico">🔐</span><span class="card-link">repo ↗</span></div>
+            <h3><a class="stretch" href="https://github.com/urstrulyrammukesh/cybersecurity-journey" target="_blank" rel="noopener">cybersecurity-journey</a></h3>
+            <p>My path into security in public: networking, Linux and OWASP Top 10 notes, a lab log, CTF write-ups, and a Python password strength checker.</p>
+            <div class="chips"><span class="chip">Python</span><span class="chip">Security</span><span class="chip">CTF</span></div>
+          </article>
+          <article class="card reveal">
+            <div class="card-top"><span class="card-ico">🧠</span><span class="card-link">repo ↗</span></div>
+            <h3><a class="stretch" href="https://github.com/urstrulyrammukesh/Leetcode-" target="_blank" rel="noopener">Leetcode-</a></h3>
+            <p>LeetCode and classic DSA problems in Python, grouped by topic: arrays, trees, graphs, DP and more, each file with its own tests.</p>
+            <div class="chips"><span class="chip">Python</span><span class="chip">DSA</span><span class="chip">Testing</span></div>
+          </article>
+          <article class="card reveal">
+            <div class="card-top"><span class="card-ico">⚡</span><span class="card-link">repo ↗</span></div>
+            <h3><a class="stretch" href="https://github.com/urstrulyrammukesh/AlgoPulse" target="_blank" rel="noopener">AlgoPulse</a></h3>
+            <p>Extending AlgoPulse with external IDE tools, GitHub syncing and hardware encryption.</p>
+            <div class="chips"><span class="chip">Python</span><span class="chip">Encryption</span></div>
+          </article>
+          <article class="card reveal">
+            <div class="card-top"><span class="card-ico">🛠️</span><span class="card-link">tool ↗</span></div>
+            <h3><a class="stretch" href="https://github.com/urstrulyrammukesh/cybersecurity-journey/blob/main/tools/password_checker.py" target="_blank" rel="noopener">Password Strength Checker</a></h3>
+            <p>A command-line tool that scores a password from 0 to 100, estimates its entropy and explains how to make it stronger, fully offline.</p>
+            <div class="chips"><span class="chip">Python</span><span class="chip">CLI</span><span class="chip">Security</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <div class="sec-head reveal"><span class="sec-num">03.</span><h2>Skills</h2></div>
+        <div class="skills">
+          <div class="skill-box reveal">
+            <h3>// languages</h3>
+            <div class="chips"><span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">HTML</span><span class="chip">CSS</span></div>
+          </div>
+          <div class="skill-box reveal">
+            <h3>// computer science</h3>
+            <div class="chips"><span class="chip">Data Structures</span><span class="chip">Algorithms</span><span class="chip">OOP</span><span class="chip">Problem Solving</span></div>
+          </div>
+          <div class="skill-box reveal">
+            <h3>// security &amp; tools</h3>
+            <div class="chips"><span class="chip">Networking</span><span class="chip">Linux</span><span class="chip">OWASP Top 10</span><span class="chip">Git</span><span class="chip">GitHub</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="security">
+      <div class="wrap">
+        <div class="sec-head reveal"><span class="sec-num">04.</span><h2>Cybersecurity roadmap</h2></div>
+        <div class="roadmap">
+          <div class="step now reveal">
+            <span class="badge">PHASE 1 · NOW</span>
+            <h3>Foundations</h3>
+            <ul><li>Networking (TCP/IP, DNS, HTTP)</li><li>Linux command line</li><li>TryHackMe Pre Security</li></ul>
+          </div>
+          <div class="step reveal">
+            <span class="badge">PHASE 2</span>
+            <h3>Web security</h3>
+            <ul><li>OWASP Top 10</li><li>SQL injection &amp; XSS labs</li><li>Burp Suite</li></ul>
+          </div>
+          <div class="step reveal">
+            <span class="badge">PHASE 3</span>
+            <h3>Practice</h3>
+            <ul><li>picoCTF challenges</li><li>Live CTF competitions</li><li>Write-ups on GitHub</li></ul>
+          </div>
+          <div class="step reveal">
+            <span class="badge">PHASE 4</span>
+            <h3>Go deeper</h3>
+            <ul><li>Cryptography</li><li>Wireshark &amp; Nmap</li><li>Pick a specialisation</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="wrap reveal">
+        <div class="sec-head" style="justify-content:center"><span class="sec-num">05.</span><h2>Let's connect</h2></div>
+        <p>I'm open to internships, collaborations and security study groups. The fastest way to reach me is on GitHub or Instagram.</p>
+        <div class="socials">
+          <a class="btn primary" href="https://github.com/urstrulyrammukesh" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://www.instagram.com/urstrulyrammukesh" target="_blank" rel="noopener">Instagram</a>
+          <a class="btn" href="https://www.youtube.com/@urstrulyrammukeshz" target="_blank" rel="noopener">YouTube</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© <span id="year">2026</span> Ram · NIT Srinagar</span>
+      <span>built with HTML &amp; CSS · hosted on GitHub Pages</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Terminal intro
+    const lines = [
+      ['<span class="prompt">ram@nit-srinagar</span>:<span class="k">~</span>$ whoami', 0],
+      ['Ram, CSE student @ NIT Srinagar', 1],
+      ['<span class="prompt">ram@nit-srinagar</span>:<span class="k">~</span>$ cat goals.txt', 0],
+      ['&gt; become a cybersecurity engineer', 1],
+      ['&gt; build tools that keep people safe', 1],
+      ['<span class="prompt">ram@nit-srinagar</span>:<span class="k">~</span>$ ls projects/', 0],
+      ['<span class="k">clinora/</span>  <span class="k">cybersecurity-journey/</span>  <span class="k">Leetcode-/</span>', 1],
+      ['<span class="prompt">ram@nit-srinagar</span>:<span class="k">~</span>$ <span class="cursor"></span>', 0],
+    ];
+    const term = document.getElementById("term");
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) {
+      term.innerHTML = lines.map(([l, out]) => `<p class="${out ? "m" : ""}">${l}</p>`).join("");
+    } else {
+      let i = 0;
+      const next = () => {
+        if (i >= lines.length) return;
+        const [l, out] = lines[i++];
+        const p = document.createElement("p");
+        if (out) p.className = "m";
+        p.innerHTML = l;
+        term.appendChild(p);
+        setTimeout(next, out ? 220 : 520);
+      };
+      setTimeout(next, 300);
+    }
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+  </script>
+</body>
+</html>

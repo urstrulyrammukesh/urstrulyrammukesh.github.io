@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Clinora case study · Ram Mukesh Yadav</title>
+  <meta name="description" content="How Ram Mukesh Yadav built Clinora: a health platform with doctor booking, video visits, encrypted records and 139 languages. Architecture, security audit, tech stack and lessons." />
+  <link rel="canonical" href="https://urstrulyrammukesh.github.io/clinora.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Clinora case study · Ram Mukesh Yadav" />
+  <meta property="og:description" content="Architecture, security audit (9 findings fixed), tech stack and lessons from building Clinora." />
+  <meta property="og:url" content="https://urstrulyrammukesh.github.io/clinora.html" />
+  <meta property="og:image" content="https://urstrulyrammukesh.github.io/assets/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#0b0f14" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0f14'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='monospace' font-size='34' font-weight='700' fill='%239fef00'%3E%3E_%3C/text%3E%3C/svg%3E" />
+  <style>
+    :root { --h: 150; --bg:#0b0f14; --card:#131b24; --line:#1f2a36; --text:#e6edf3; --muted:#8b98a6;
+      --accent:hsl(var(--h) 90% 55%); --accent-text:hsl(var(--h) 90% 66%); --accent-dim:hsla(var(--h),90%,55%,.12);
+      --mono: ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace; --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family:var(--sans); background:var(--bg); color:var(--text); line-height:1.65; -webkit-font-smoothing:antialiased; }
+    body::before { content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+      background:radial-gradient(60% 40% at 50% -8%, hsla(var(--h),85%,50%,.18), transparent 70%),
+                 radial-gradient(40% 50% at 105% 60%, hsla(calc(var(--h) + 120),80%,55%,.10), transparent 70%); }
+    a { color: var(--accent-text); text-decoration: none; } a:hover { text-decoration: underline; }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+    nav { position: sticky; top: 0; z-index: 5; background: rgba(11,15,20,.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+    nav .wrap { display:flex; align-items:center; justify-content:space-between; height:58px; }
+    .logo { font-family:var(--mono); font-weight:700; color:var(--accent); } .back { color: var(--muted); font-size: .9rem; }
+    header { padding: 52px 0 10px; }
+    .tag { display:inline-block; font:600 .75rem var(--mono); color:var(--accent-text); background:var(--accent-dim); border:1px solid hsla(var(--h),90%,55%,.35); padding:4px 10px; border-radius:99px; }
+    h1 { font-size: clamp(2rem, 5vw, 3.1rem); line-height:1.12; margin: 14px 0 12px; } h1 em { font-style: normal; color: var(--accent); }
+    .lead { color: var(--muted); font-size: 1.08rem; max-width: 720px; margin: 0; }
+    .btns { display:flex; flex-wrap:wrap; gap:10px; margin: 22px 0 0; }
+    .btn { display:inline-flex; gap:8px; align-items:center; padding:10px 16px; border-radius:10px; font-weight:700; font-size:.92rem; border:1px solid var(--line); background:var(--card); color:var(--text); }
+    .btn.primary { background: var(--accent); color: #0b0f14; border-color: var(--accent); }
+    .btn:hover { text-decoration: none; border-color: var(--accent); }
+    section { padding: 44px 0 6px; }
+    h2 { font-size: 1.5rem; margin: 0 0 16px; } h2 small { font: 600 .85rem var(--mono); color: var(--accent-text); margin-right: 10px; }
+    p { color: #c9d4de; }
+    .stats { display:grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .stat { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
+    .stat b { display:block; font: 700 1.7rem var(--mono); color: var(--accent-text); } .stat span { color: var(--muted); font-size: .85rem; }
+    .shots { display:grid; grid-template-columns: 2.4fr 1fr; gap: 12px; margin-top: 22px; }
+    .shots img { width:100%; border-radius: 12px; border:1px solid var(--line); background:#0f151c; height: 100%; max-height: 360px; object-fit: contain; }
+    .grid2 { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .box { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+    .box h3 { margin: 0 0 6px; font-size: 1.02rem; } .box p, .box li { color: var(--muted); font-size: .93rem; margin: 0; }
+    .box ul { margin: 6px 0 0; padding-left: 18px; display: grid; gap: 3px; }
+    .arch { display:grid; grid-template-columns: 1fr auto 1.3fr auto 1fr; gap: 10px; align-items: center; }
+    .arch .col { display:grid; gap: 8px; }
+    .node { background: var(--card); border:1px solid var(--line); border-radius: 12px; padding: 10px 12px; font-size: .88rem; }
+    .node b { display:block; font-size: .95rem; } .node span { color: var(--muted); font-size: .8rem; }
+    .node.core { border-color: var(--accent); box-shadow: 0 0 30px -12px var(--accent); }
+    .arrow { font: 700 1.4rem var(--mono); color: var(--accent); text-align: center; }
+    .layers { display:grid; gap: 8px; }
+    .layer { display:flex; gap: 12px; align-items:center; background: var(--card); border:1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 10px; padding: 10px 14px; font-size: .92rem; }
+    .layer b { min-width: 28px; font-family: var(--mono); color: var(--accent-text); }
+    table { width: 100%; border-collapse: collapse; font-size: .9rem; background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+    th, td { text-align: left; padding: 10px 12px; border-top: 1px solid var(--line); vertical-align: top; }
+    th { background: #0f151c; font: 600 .74rem var(--mono); letter-spacing: .06em; color: var(--muted); text-transform: uppercase; border-top: 0; }
+    .sev { font: 600 .72rem var(--mono); padding: 2px 8px; border-radius: 99px; white-space: nowrap; }
+    .sev.M { color:#ffc857; background: rgba(255,200,87,.12); } .sev.L { color:#3ddc97; background: rgba(61,220,151,.12); } .sev.N { color: var(--muted); background: #1a2430; }
+    .chips { display:flex; flex-wrap:wrap; gap: 8px; }
+    .chip { font: .78rem var(--mono); color: var(--accent-text); background: var(--accent-dim); padding: 4px 10px; border-radius: 6px; }
+    .tl { list-style: none; margin: 0; padding: 0 0 0 22px; border-left: 2px solid var(--line); }
+    .tl li { position: relative; margin: 0 0 16px; } .tl li::before { content:""; position:absolute; left:-29px; top:6px; width:12px; height:12px; border-radius:50%; background: var(--accent); }
+    .tl b { font-family: var(--mono); color: var(--accent-text); } .tl p { margin: 2px 0 0; color: var(--muted); font-size: .93rem; }
+    .note { border:1px solid rgba(255,200,87,.4); background: rgba(255,200,87,.07); border-radius: 12px; padding: 14px 16px; color: #e6d9b8; font-size: .95rem; }
+    footer { color: var(--muted); font-size: .85rem; padding: 40px 0 50px; text-align: center; }
+    @media (max-width: 760px) {
+      .stats { grid-template-columns: 1fr 1fr; } .grid2 { grid-template-columns: 1fr; }
+      .arch { grid-template-columns: 1fr; } .arrow { transform: rotate(90deg); }
+      .shots { grid-template-columns: 1fr 1fr; } th:nth-child(3), td:nth-child(3) { display: none; }
+    }
+  </style>
+</head>
+<body>
+<nav><div class="wrap"><a class="logo" href="index.html">&gt;_ ram</a><a class="back" href="index.html#projects">← Back to projects</a></div></nav>
+<main class="wrap">
+  <header>
+    <span class="tag">// case study · founder &amp; developer · Nov 2026</span>
+    <h1>Building <em>Clinora</em>: a health platform from zero to live</h1>
+    <p class="lead">Clinora helps patients find and book real doctors, have video visits, get prescriptions and reminders, and keep their health records encrypted, in 139 languages. This page explains what I built, how it works and how I secured it.</p>
+    <div class="btns">
+      <a class="btn primary" href="https://clinora-cwxu.onrender.com" target="_blank" rel="noopener">🌐 Open live demo</a>
+      <a class="btn" href="https://github.com/urstrulyrammukesh/clinora" target="_blank" rel="noopener">GitHub repo</a>
+      <a class="btn" href="assets/Clinora-Company-Overview.pdf" target="_blank" rel="noopener">📄 Company paper (35 pages)</a>
+    </div>
+    <div class="shots">
+      <img src="https://raw.githubusercontent.com/urstrulyrammukesh/clinora/main/assets/readme/screens/1-website.jpg" alt="Clinora website home page" loading="lazy" />
+      <img src="https://raw.githubusercontent.com/urstrulyrammukesh/clinora/main/assets/readme/screens/4-app.jpg" alt="Clinora phone app" loading="lazy" />
+    </div>
+  </header>
+
+  <section>
+    <h2><small>01</small>At a glance</h2>
+    <div class="stats">
+      <div class="stat"><b>139</b><span>API endpoints</span></div>
+      <div class="stat"><b>35</b><span>database tables</span></div>
+      <div class="stat"><b>12.2k</b><span>lines of code</span></div>
+      <div class="stat"><b>139</b><span>languages</span></div>
+      <div class="stat"><b>45</b><span>automated tests</span></div>
+      <div class="stat"><b>9</b><span>security findings fixed</span></div>
+      <div class="stat"><b>52</b><span>payment currencies</span></div>
+      <div class="stat"><b>66</b><span>commits in 3 days</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><small>02</small>The problem</h2>
+    <p>Booking a doctor usually means phone calls, long queues and paper prescriptions that get lost. Reminders are easy to miss, and health records end up scattered. Many patients are also more comfortable in their own language than in English.</p>
+    <p>I wanted one place where a patient can find a <b>verified</b> doctor, book and pay, visit in person or by video, and then get the prescription, reminders and records automatically, in their own language, on any phone.</p>
+  </section>
+
+  <section>
+    <h2><small>03</small>What it does</h2>
+    <div class="grid2">
+      <div class="box"><h3>👩 For patients</h3><ul><li>Find verified doctors with filters and a smart map</li><li>Book and pay online, or join a clinic's live queue token</li><li>Video visits in the browser (WebRTC)</li><li>Printable prescriptions and medicine reminders by push, SMS and WhatsApp</li><li>Encrypted health records and family profiles</li></ul></div>
+      <div class="box"><h3>👨‍⚕️ For doctors &amp; clinics</h3><ul><li>Doctor pages, verification and payouts</li><li>Queue tokens, clinic teams and dashboards</li><li>Patient history and receipts</li><li>Report and block for safety</li></ul></div>
+      <div class="box"><h3>🤖 AI features</h3><ul><li>AI receptionist chat</li><li>WhatsApp assistant</li><li>Prescription reading and translations</li></ul></div>
+      <div class="box"><h3>🗺️ Smart map</h3><ul><li>Exact GPS and follow-me compass map</li><li>Road routes and travel times (walk, cycle, car)</li><li>Live location sharing with a tracking link</li></ul></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><small>04</small>Architecture</h2>
+    <div class="arch">
+      <div class="col">
+        <div class="node"><b>👩 Patient</b><span>browser / installed app</span></div>
+        <div class="node"><b>👨‍⚕️ Doctor &amp; clinic</b><span>dashboard</span></div>
+        <div class="node"><b>💬 WhatsApp user</b><span>Meta webhook</span></div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="col">
+        <div class="node core"><b>Python server</b><span>139 JSON API endpoints · CSP · 2FA · rate limits</span></div>
+        <div class="node"><b>SQLite</b><span>35 tables</span></div>
+        <div class="node"><b>Encrypted files</b><span>AES-256-GCM</span></div>
+        <div class="node"><b>Background jobs</b><span>reminders · backups</span></div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="col">
+        <div class="node"><b>Anthropic Claude</b><span>AI features</span></div>
+        <div class="node"><b>Razorpay · Stripe · PayPal</b><span>payments</span></div>
+        <div class="node"><b>SMTP · SMS · WhatsApp · Web Push</b><span>notifications</span></div>
+        <div class="node"><b>OpenStreetMap · OSRM</b><span>maps &amp; routes</span></div>
+      </div>
+    </div>
+    <p style="margin-top:14px">The server uses only Python's standard library for the web layer. Video calls go <b>directly between the two browsers</b> (WebRTC); the server only passes the short set-up messages.</p>
+  </section>
+
+  <section>
+    <h2><small>05</small>Security</h2>
+    <div class="layers">
+      <div class="layer"><b>1</b>HTTPS everywhere with HSTS</div>
+      <div class="layer"><b>2</b>Strict Content-Security-Policy with a per-page nonce, Subresource Integrity on outside scripts</div>
+      <div class="layer"><b>3</b>Rate limits and CSRF checks</div>
+      <div class="layer"><b>4</b>HttpOnly, SameSite sessions; PBKDF2 passwords (310k rounds); email and phone codes</div>
+      <div class="layer"><b>5</b>Two-factor login (authenticator app + recovery codes)</div>
+      <div class="layer"><b>6</b>Roles (patient · doctor · admin), verified doctors, report and block</div>
+      <div class="layer"><b>7</b>AES-256-GCM encrypted records with daily checked backups</div>
+    </div>
+    <h3 style="margin:26px 0 10px">Security audit · 27 November 2026</h3>
+    <table>
+      <thead><tr><th>#</th><th>Finding</th><th>Severity</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Script rules allowed all of unpkg.com</td><td><span class="sev M">Medium</span></td><td>✅ Fixed</td></tr>
+        <tr><td>2</td><td>Known vulnerabilities in <code>aiohttp</code> (7) and <code>multidict</code> (1)</td><td><span class="sev M">Medium</span></td><td>✅ Fixed</td></tr>
+        <tr><td>3</td><td>Unexpected server errors dropped the connection</td><td><span class="sev L">Low</span></td><td>✅ Fixed</td></tr>
+        <tr><td>4</td><td>No Cross-Origin-Opener-Policy header</td><td><span class="sev L">Low</span></td><td>✅ Fixed</td></tr>
+        <tr><td>5</td><td>Outgoing requests accepted any URL scheme (Bandit B310)</td><td><span class="sev L">Low</span></td><td>✅ Hardened</td></tr>
+        <tr><td>6</td><td>Backup storage address could be plain http://</td><td><span class="sev L">Low</span></td><td>✅ Fixed</td></tr>
+        <tr><td>7</td><td>SQL built with an f-string (Bandit B608)</td><td><span class="sev N">—</span></td><td>False positive, documented</td></tr>
+        <tr><td>8</td><td>AI chat had no rate limit (anyone could run up the AI bill)</td><td><span class="sev M">Medium</span></td><td>✅ Fixed</td></tr>
+        <tr><td>9</td><td>Rate-limit memory never shrank (slow memory exhaustion)</td><td><span class="sev L">Low</span></td><td>✅ Fixed</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:10px"><a href="https://github.com/urstrulyrammukesh/clinora/blob/main/docs/security-audit.md" target="_blank" rel="noopener">Read the full audit report ↗</a> · Every push is scanned by <b>CodeQL, Bandit, pip-audit</b> and <b>Dependabot</b>.</p>
+  </section>
+
+  <section>
+    <h2><small>06</small>Tech stack</h2>
+    <div class="chips">
+      <span class="chip">Python 3</span><span class="chip">JavaScript</span><span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">SQLite</span>
+      <span class="chip">WebRTC</span><span class="chip">Service Worker / PWA</span><span class="chip">Web Push</span><span class="chip">MapLibre GL</span><span class="chip">Web Speech API</span>
+      <span class="chip">Anthropic Claude</span><span class="chip">Razorpay</span><span class="chip">Stripe</span><span class="chip">PayPal</span><span class="chip">WhatsApp Cloud API</span>
+      <span class="chip">MSG91 / Twilio</span><span class="chip">OpenStreetMap</span><span class="chip">OSRM</span><span class="chip">pytest</span><span class="chip">GitHub Actions</span>
+      <span class="chip">CodeQL</span><span class="chip">Bandit</span><span class="chip">pip-audit</span><span class="chip">Render</span>
+    </div>
+    <p style="margin-top:12px">Full breakdown with line counts: <a href="https://github.com/urstrulyrammukesh/clinora-tech-stack" target="_blank" rel="noopener">clinora-tech-stack ↗</a></p>
+  </section>
+
+  <section>
+    <h2><small>07</small>How it was built</h2>
+    <ul class="tl">
+      <li><b>Day 1</b><p>AI receptionist, 139 languages, map and world directory, payments in 52 currencies, video calls, legal pages, installable app, company paper.</p></li>
+      <li><b>Day 2</b><p>Accounts, notifications, social login, doctor verification, real doctor booking, prescriptions, WhatsApp and SMS, queue tokens, health records, clinic teams, automated tests, live launch.</p></li>
+      <li><b>Day 3</b><p>Security audit (9 findings), threat model, CodeQL and Dependabot, two-factor login, smart map with travel times and live location sharing.</p></li>
+    </ul>
+    <div class="note">🤝 <b>Honest note:</b> Clinora was built <b>with AI assistance</b> (Claude Code as a pair programmer). I directed the product: I decided the features, tested the app and reviewed every change.</div>
+  </section>
+
+  <section>
+    <h2><small>08</small>What I learned</h2>
+    <div class="grid2">
+      <div class="box"><h3>Security is a process</h3><p>An audit on a "finished" app still found 9 issues. Automated scanners on every push catch problems before they go live.</p></div>
+      <div class="box"><h3>Limit anything that costs money</h3><p>The AI chat had no rate limit, so anyone could run up the bill. Every paid API now has limits.</p></div>
+      <div class="box"><h3>Tests make big changes safe</h3><p>45 end-to-end tests with fake payment, WhatsApp and storage services let me ship many features quickly without breaking old ones.</p></div>
+      <div class="box"><h3>Keep the stack simple</h3><p>A standard-library Python server and plain JavaScript kept the app fast, easy to host and easy to read.</p></div>
+    </div>
+  </section>
+</main>
+<footer>Ram Mukesh Yadav · Founder, Clinora · <a href="index.html">Portfolio</a> · <a href="resume.html">Resume</a></footer>
+</body>
+</html>

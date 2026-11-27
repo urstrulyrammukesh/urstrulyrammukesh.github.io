@@ -8,13 +8,18 @@
   <meta name="keywords" content="Ram Mukesh Yadav, Ram Yadav, Ram Mukesh, urstrulyrammukesh, NIT Srinagar, CSE, Computer Science, cybersecurity, Python, DSA, portfolio" />
   <meta name="author" content="Ram Mukesh Yadav (urstrulyrammukesh)" />
   <link rel="canonical" href="https://urstrulyrammukesh.github.io/" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Ram Mukesh Yadav · CSE @ NIT Srinagar · Aspiring Cybersecurity Engineer" />
   <meta property="og:description" content="Portfolio of Ram Mukesh Yadav, Computer Science & Engineering student at NIT Srinagar, building Clinora and learning cybersecurity." />
   <meta property="og:url" content="https://urstrulyrammukesh.github.io/" />
   <meta property="og:image" content="https://urstrulyrammukesh.github.io/assets/hero.jpg" />
+  <meta property="og:image:alt" content="Glowing cybersecurity shield above a circuit board" />
+  <meta property="og:site_name" content="Ram Mukesh Yadav" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ram Mukesh Yadav · CSE @ NIT Srinagar · Aspiring Cybersecurity Engineer" />
+  <meta name="twitter:image" content="https://urstrulyrammukesh.github.io/assets/hero.jpg" />
   <meta name="theme-color" content="#0b0f14" />
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0f14'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='monospace' font-size='34' font-weight='700' fill='%239fef00'%3E%3E_%3C/text%3E%3C/svg%3E" />
@@ -32,6 +37,8 @@
     "description": "CSE student at NIT Srinagar and aspiring cybersecurity engineer.",
     "affiliation": { "@type": "CollegeOrUniversity", "name": "National Institute of Technology Srinagar" },
     "address": { "@type": "PostalAddress", "addressLocality": "Srinagar", "addressRegion": "Jammu and Kashmir", "addressCountry": "IN" },
+    "alumniOf": [{ "@type": "CollegeOrUniversity", "name": "National Institute of Technology Srinagar" }],
+    "worksFor": { "@type": "Organization", "name": "Clinora", "url": "https://clinora-cwxu.onrender.com" },
     "knowsAbout": ["Cybersecurity", "Python", "Rust", "Data Structures and Algorithms", "Web Development", "Linux", "Nmap", "Burp Suite", "Wireshark", "OSINT"],
     "sameAs": [
       "https://github.com/urstrulyrammukesh",
@@ -324,6 +331,69 @@
       .btn.primary::after, .art-tilt img, .art-scan, .sweep, .blip, h1 .hl, .dot, .cursor { animation: none; }
       #glow { display: none; }
     }
+
+    /* ---------- new sections (Nov 2026) ---------- */
+    .now-box { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: start; background: var(--card);
+      border: 1px solid var(--accent-line); border-radius: var(--radius); padding: 22px 24px; }
+    .now-box .pulse { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); margin-top: 7px;
+      box-shadow: 0 0 0 0 hsla(var(--h), 90%, 55%, .6); animation: pulse 2s infinite; }
+    @keyframes pulse { 70% { box-shadow: 0 0 0 12px hsla(var(--h), 90%, 55%, 0); } 100% { box-shadow: 0 0 0 0 hsla(var(--h), 90%, 55%, 0); } }
+    .now-box h3 { margin: 0 0 4px; font-size: 1.05rem; } .now-box small { color: var(--muted); font-family: var(--mono); font-size: .75rem; }
+    .now-box ul { margin: 10px 0 0; padding-left: 18px; color: var(--muted); display: grid; gap: 4px; }
+    .now-box ul b { color: var(--text); font-weight: 600; }
+
+    .ach { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .ach-card { background: var(--card); border: 1px solid hsla(var(--h), 40%, 40%, .28); border-radius: var(--radius); padding: 20px;
+      transition: border-color .25s, transform .25s; }
+    .ach-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .ach-num { font: 700 2rem/1.1 var(--mono); color: var(--accent-text); }
+    .ach-num small { font-size: .9rem; color: var(--muted); }
+    .ach-card h3 { margin: 8px 0 4px; font-size: .98rem; } .ach-card p { margin: 0; color: var(--muted); font-size: .85rem; }
+
+    .timeline { position: relative; list-style: none; margin: 0; padding: 0 0 0 28px; }
+    .timeline::before { content: ""; position: absolute; left: 8px; top: 6px; bottom: 6px; width: 2px;
+      background: linear-gradient(var(--accent), hsla(var(--h), 90%, 55%, .1)); }
+    .timeline li { position: relative; margin: 0 0 18px; background: var(--card); border: 1px solid hsla(var(--h), 40%, 40%, .28);
+      border-radius: 12px; padding: 14px 18px; }
+    .timeline li::before { content: ""; position: absolute; left: -26px; top: 18px; width: 12px; height: 12px; border-radius: 50%;
+      background: var(--bg); border: 2px solid var(--accent); }
+    .timeline li.on::before { background: var(--accent); box-shadow: 0 0 14px var(--accent); }
+    .timeline .when { font: 600 .74rem var(--mono); color: var(--accent-text); }
+    .timeline h3 { margin: 2px 0 2px; font-size: 1rem; } .timeline p { margin: 0; color: var(--muted); font-size: .9rem; }
+
+    .shots { display: grid; grid-template-columns: 2.2fr 1fr; gap: 12px; margin: 4px 0 18px; position: relative; z-index: 2; }
+    .shots img { width: 100%; height: 100%; max-height: 300px; object-fit: contain; border-radius: 10px;
+      border: 1px solid var(--line); background: #0f151c; }
+    .shots .tall { object-fit: contain; }
+
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .stat-card { background: var(--card); border: 1px solid hsla(var(--h), 40%, 40%, .28); border-radius: var(--radius); padding: 16px;
+      display: flex; flex-direction: column; gap: 10px; align-items: center; justify-content: center; min-height: 180px; text-align: center; }
+    .stat-card img { max-width: 100%; height: auto; }
+    .stat-card .fallback { display: none; color: var(--muted); font-size: .9rem; }
+    .stat-card.broken img { display: none; } .stat-card.broken .fallback { display: block; }
+    .stat-card a.more { font: 600 .78rem var(--mono); color: var(--accent-text); }
+    .stat-wide { grid-column: 1 / -1; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .list-box { background: var(--card); border: 1px solid hsla(var(--h), 40%, 40%, .28); border-radius: var(--radius); padding: 22px; }
+    .list-box h3 { margin: 0 0 14px; font: 600 1rem var(--mono); color: var(--accent-text); }
+    .row-item { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); }
+    .row-item:first-of-type { border-top: 0; }
+    .row-item b { font-weight: 600; } .row-item small { display: block; color: var(--muted); font-size: .8rem; }
+    .row-item a:hover b { color: var(--accent-text); }
+    .pill { flex-shrink: 0; font: 600 .7rem var(--mono); padding: 3px 9px; border-radius: 99px; color: var(--muted); border: 1px solid var(--line); }
+    .pill.done { color: #0b0f14; background: var(--accent); border-color: var(--accent); }
+    .pill.soon { color: #ffc857; border-color: rgba(255,200,87,.45); }
+
+    @media (max-width: 900px) {
+      .ach { grid-template-columns: 1fr 1fr; }
+      .stats-grid, .two-col { grid-template-columns: 1fr; }
+      .shots { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) { .ach { grid-template-columns: 1fr 1fr; } .ach-num { font-size: 1.6rem; } }
+    html.fx-off .now-box .pulse { animation: none; }
+    @media (max-width: 560px) { nav .logo span { display: none; } }
   </style>
 </head>
 <body>
@@ -338,8 +408,9 @@
         <div class="nav-links">
           <a href="#about">About</a>
           <a href="#projects">Projects</a>
+          <a href="#journey" class="hide-sm">Journey</a>
           <a href="#skills" class="hide-sm">Skills</a>
-          <a href="#security" class="hide-sm">Security</a>
+          <a href="#writeups" class="hide-sm">Write-ups</a>
           <a href="roadmap.html">Roadmap</a>
           <a href="#contact">Contact</a>
         </div>
@@ -381,6 +452,7 @@
         <p class="sub drift" data-depth="5">Computer Science &amp; Engineering student at <strong>NIT Srinagar</strong>. I build with <strong>Python</strong> and the web, and I'm learning to break and defend systems.</p>
         <div class="cta drift" data-depth="4">
           <a class="btn primary" href="#projects">See my work</a>
+          <a class="btn" href="resume.html">📄 Resume</a>
           <a class="btn" href="https://github.com/urstrulyrammukesh" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
             GitHub
@@ -410,6 +482,23 @@
   </header>
 
   <main>
+
+    <section id="now" data-hue="60" style="padding:40px 0">
+      <div class="wrap">
+        <div class="now-box reveal">
+          <span class="pulse" aria-hidden="true"></span>
+          <div>
+            <h3>What I'm doing now</h3><small>updated 27 November 2026</small>
+            <ul>
+              <li><b>Starting DSA on 5 December 2026</b>: Phase 0 of <a href="roadmap.html" style="color:var(--accent-text)">my roadmap</a> (language basics, Big-O)</li>
+              <li><b>Building Clinora</b>: security fixes, speed and new features</li>
+              <li><b>Learning</b>: networking and Linux basics for cybersecurity</li>
+              <li><b>Looking for</b>: internships and security study groups</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
     <section id="about" data-hue="80">
       <div class="wrap">
         <div class="sec-head reveal"><span class="sec-num">01.</span><h2 class="scramble drift" data-depth="10">About me</h2></div>
@@ -433,14 +522,50 @@
       </div>
     </section>
 
+
+    <section id="achievements" data-hue="95">
+      <div class="wrap">
+        <div class="sec-head reveal"><span class="sec-num">02.</span><h2 class="scramble drift" data-depth="10">Achievements</h2></div>
+        <div class="ach">
+          <div class="ach-card reveal"><div class="ach-num">90.1<small> %ile</small></div><h3>JEE Main</h3><p>Got into NIT Srinagar, B.Tech CSE</p></div>
+          <div class="ach-card reveal"><div class="ach-num">83.8<small>%</small></div><h3>Class 12</h3><p>NIOS, English medium</p></div>
+          <div class="ach-card reveal"><div class="ach-num">139</div><h3>Languages in Clinora</h3><p>A health platform I founded and built</p></div>
+          <div class="ach-card reveal"><div class="ach-num">139</div><h3>API endpoints</h3><p>Clinora backend · 35 database tables</p></div>
+          <div class="ach-card reveal"><div class="ach-num">9</div><h3>Security fixes</h3><p>From Clinora's security audit · 2FA for staff</p></div>
+          <div class="ach-card reveal"><div class="ach-num">45</div><h3>Automated tests</h3><p>Clinora · CodeQL, Bandit, pip-audit</p></div>
+          <div class="ach-card reveal"><div class="ach-num">233</div><h3>DSA solutions</h3><p><a href="https://github.com/urstrulyrammukesh/Leetcode-" target="_blank" rel="noopener" style="color:var(--accent-text)">Leetcode-</a> repo, 14 topics, tested</p></div>
+          <div class="ach-card reveal"><div class="ach-num">🔥</div><h3>LeetCode daily</h3><p>Daily challenge streak started · <a href="https://leetcode.com/u/urstrulyrammukesh96/" target="_blank" rel="noopener" style="color:var(--accent-text)">profile</a></p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="journey" data-hue="100">
+      <div class="wrap">
+        <div class="sec-head reveal"><span class="sec-num">03.</span><h2 class="scramble drift" data-depth="10">Journey</h2></div>
+        <ol class="timeline reveal">
+          <li><span class="when">SCHOOL</span><h3>Class 10 · 71.8%</h3><p>Bright Way Academy, Dhani Bazar, near Gorakhpur, Uttar Pradesh</p></li>
+          <li><span class="when">JUN 2022 – JUN 2023</span><h3>Advanced Computer Course</h3><p>One year of computer fundamentals and programming</p></li>
+          <li><span class="when">SCHOOL</span><h3>Class 12 · 83.8%</h3><p>NIOS (National Institute of Open Schooling), English medium</p></li>
+          <li><span class="when">ENTRANCE</span><h3>JEE Main · 90.1 percentile</h3><p>Admission to NIT Srinagar</p></li>
+          <li><span class="when">COLLEGE</span><h3>B.Tech, Computer Science &amp; Engineering</h3><p>National Institute of Technology (NIT) Srinagar · member of the Training &amp; Placement Cell</p></li>
+          <li><span class="when">NOV 2026</span><h3>Founded Clinora</h3><p>Built and launched a full health platform: doctors, video visits, prescriptions, reminders, 139 languages</p></li>
+          <li class="on"><span class="when">DEC 2026 → 2030</span><h3>DSA + Cybersecurity roadmap</h3><p>DSA zero to advanced, then security certifications (ISC2 CC → Security+ → eJPT → OSCP) · <a href="roadmap.html" style="color:var(--accent-text)">see the plan</a></p></li>
+        </ol>
+      </div>
+    </section>
+
     <section id="projects" data-hue="110">
       <div class="wrap">
-        <div class="sec-head reveal"><span class="sec-num">02.</span><h2 class="scramble drift" data-depth="10">Projects</h2></div>
+        <div class="sec-head reveal"><span class="sec-num">04.</span><h2 class="scramble drift" data-depth="10">Projects</h2></div>
         <div class="projects">
           <article class="card featured reveal tilt">
             <div class="card-top"><span class="card-ico drift" data-depth="14">🏥</span><span class="card-link">github.com/…/clinora ↗</span></div>
             <h3><a class="stretch" href="https://github.com/urstrulyrammukesh/clinora" target="_blank" rel="noopener">Clinora</a> <span class="chip" style="vertical-align:middle;margin-left:6px">Founder</span></h3>
             <p>A full health platform: patients book real doctors (online payment, video visits, prescriptions), get reminders by push, SMS and WhatsApp, keep encrypted health records, and use a smart map with exact GPS, travel times and live location sharing. Clinics get queue tokens, teams and dashboards. Security-audited (9 fixes), two-factor login for staff, 45 automated tests with CodeQL, Bandit and pip-audit. 35 tables, 139 API endpoints.</p>
+            <div class="shots">
+              <img loading="lazy" src="https://raw.githubusercontent.com/urstrulyrammukesh/clinora/main/assets/readme/screens/1-website.jpg" alt="Clinora website home page" />
+              <img loading="lazy" class="tall" src="https://raw.githubusercontent.com/urstrulyrammukesh/clinora/main/assets/readme/screens/4-app.jpg" alt="Clinora phone app" />
+            </div>
             <div class="chips"><span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">HTML/CSS</span><span class="chip">AI</span><span class="chip">PWA</span><span class="chip">Security</span><span class="chip">Payments</span><span class="chip">WhatsApp API</span></div>
             <a class="paper-btn" href="https://clinora-cwxu.onrender.com" target="_blank" rel="noopener">🌐 Open the live demo <small>clinora-cwxu.onrender.com</small></a>
             <a class="paper-btn" href="assets/Clinora-Company-Overview.pdf" target="_blank" rel="noopener">📄 Read the Clinora paper <small>PDF · 35 pages</small></a>
@@ -479,9 +604,33 @@
       </div>
     </section>
 
+
+    <section id="stats" data-hue="150">
+      <div class="wrap">
+        <div class="sec-head reveal"><span class="sec-num">05.</span><h2 class="scramble drift" data-depth="10">Live stats</h2></div>
+        <div class="stats-grid">
+          <div class="stat-card reveal">
+            <img loading="lazy" src="https://leetcard.jacoblin.cool/urstrulyrammukesh96?theme=dark&amp;font=Fira%20Code&amp;ext=activity" alt="LeetCode stats for urstrulyrammukesh96" onerror="this.parentNode.classList.add('broken')" />
+            <span class="fallback">LeetCode stats are loading slowly.</span>
+            <a class="more" href="https://leetcode.com/u/urstrulyrammukesh96/" target="_blank" rel="noopener">LeetCode profile ↗</a>
+          </div>
+          <div class="stat-card reveal">
+            <img loading="lazy" src="https://github-readme-stats.vercel.app/api?username=urstrulyrammukesh&amp;show_icons=true&amp;theme=tokyonight&amp;hide_border=true" alt="GitHub stats for urstrulyrammukesh" onerror="this.parentNode.classList.add('broken')" />
+            <span class="fallback">GitHub stats are loading slowly.</span>
+            <a class="more" href="https://github.com/urstrulyrammukesh" target="_blank" rel="noopener">GitHub profile ↗</a>
+          </div>
+          <div class="stat-card stat-wide reveal">
+            <img loading="lazy" src="https://streak-stats.demolab.com?user=urstrulyrammukesh&amp;theme=tokyonight&amp;hide_border=true" alt="GitHub contribution streak" onerror="this.parentNode.classList.add('broken')" />
+            <img loading="lazy" src="https://ghchart.rshah.org/3ddc97/urstrulyrammukesh" alt="GitHub contribution graph" style="max-width:100%" onerror="this.style.display='none'" />
+            <span class="fallback">Contribution stats are loading slowly.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="skills" data-hue="185">
       <div class="wrap">
-        <div class="sec-head reveal"><span class="sec-num">03.</span><h2 class="scramble drift" data-depth="10">Skills</h2></div>
+        <div class="sec-head reveal"><span class="sec-num">06.</span><h2 class="scramble drift" data-depth="10">Skills</h2></div>
         <div class="skills">
           <div class="skill-box reveal">
             <h3>// languages</h3>
@@ -501,7 +650,7 @@
 
     <section id="security" data-hue="245">
       <div class="wrap">
-        <div class="sec-head reveal"><span class="sec-num">04.</span><h2 class="scramble drift" data-depth="10">Cybersecurity roadmap</h2></div>
+        <div class="sec-head reveal"><span class="sec-num">07.</span><h2 class="scramble drift" data-depth="10">Cybersecurity roadmap</h2></div>
         <div class="sec-row reveal">
           <p>I'm working through security one phase at a time and logging every lab, note and CTF write-up in my <a href="https://github.com/urstrulyrammukesh/cybersecurity-journey" target="_blank" rel="noopener" style="color:var(--accent-text)">cybersecurity-journey</a> repo. Right now I'm on the foundations.</p>
           <div class="radar drift" data-depth="-10" aria-hidden="true"><div class="sweep"></div><span class="blip" style="left:68%;top:32%"></span><span class="blip" style="left:30%;top:62%;animation-delay:1.6s"></span><span class="blip" style="left:58%;top:74%;animation-delay:2.7s"></span></div>
@@ -515,9 +664,33 @@
       </div>
     </section>
 
+
+    <section id="writeups" data-hue="215">
+      <div class="wrap">
+        <div class="sec-head reveal"><span class="sec-num">08.</span><h2 class="scramble drift" data-depth="10">Write-ups &amp; certifications</h2></div>
+        <div class="two-col">
+          <div class="list-box reveal">
+            <h3>// notes &amp; write-ups</h3>
+            <a class="row-item" href="https://github.com/urstrulyrammukesh/cybersecurity-journey/blob/main/notes/01-networking-basics.md" target="_blank" rel="noopener"><span><b>Networking basics</b><small>OSI, TCP/IP, IP addresses, ports, DNS, HTTP</small></span><span class="pill done">NOTES</span></a>
+            <a class="row-item" href="https://github.com/urstrulyrammukesh/cybersecurity-journey/blob/main/notes/02-linux-basics.md" target="_blank" rel="noopener"><span><b>Linux basics</b><small>Command line, files, permissions</small></span><span class="pill done">NOTES</span></a>
+            <a class="row-item" href="https://github.com/urstrulyrammukesh/cybersecurity-journey/blob/main/notes/03-owasp-top-10.md" target="_blank" rel="noopener"><span><b>OWASP Top 10</b><small>The most common web security risks</small></span><span class="pill done">NOTES</span></a>
+            <a class="row-item" href="https://github.com/urstrulyrammukesh/cybersecurity-journey/tree/main/ctf-writeups" target="_blank" rel="noopener"><span><b>CTF write-ups</b><small>Step-by-step solutions, starting with picoCTF</small></span><span class="pill soon">COMING SOON</span></a>
+          </div>
+          <div class="list-box reveal">
+            <h3>// certifications &amp; practice</h3>
+            <a class="row-item" href="https://www.isc2.org/certifications/cc" target="_blank" rel="noopener"><span><b>ISC2 Certified in Cybersecurity (CC)</b><small>Entry-level security certification</small></span><span class="pill">PLANNED 2027</span></a>
+            <a class="row-item" href="https://www.comptia.org/certifications/security" target="_blank" rel="noopener"><span><b>CompTIA Security+</b><small>Core security knowledge</small></span><span class="pill">PLANNED 2027–28</span></a>
+            <a class="row-item" href="https://ine.com" target="_blank" rel="noopener"><span><b>eJPT</b><small>Junior penetration tester, hands-on</small></span><span class="pill">PLANNED 2028</span></a>
+            <a class="row-item" href="https://www.offsec.com/courses/pen-200/" target="_blank" rel="noopener"><span><b>OSCP</b><small>The industry's practical pentest exam</small></span><span class="pill">GOAL 2029</span></a>
+            <a class="row-item" href="https://tryhackme.com" target="_blank" rel="noopener"><span><b>TryHackMe · Hack The Box · picoCTF</b><small>Practice profiles and badges will appear here</small></span><span class="pill soon">STARTING DEC 2026</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="contact" class="contact" data-hue="-45">
       <div class="wrap reveal">
-        <div class="sec-head"><span class="sec-num">05.</span><h2 class="scramble drift" data-depth="10">Let's connect</h2></div>
+        <div class="sec-head"><span class="sec-num">09.</span><h2 class="scramble drift" data-depth="10">Let's connect</h2></div>
         <p>I'm open to internships, collaborations and security study groups. Email or call me directly, or connect with me on LinkedIn.</p>
         <div class="reach">
           <a class="reach-card drift" data-depth="6" id="mailCard" href="#contact" aria-label="Email Ram Mukesh Yadav">

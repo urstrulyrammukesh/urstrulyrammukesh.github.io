@@ -44,6 +44,14 @@
     .stat b { display:block; font: 700 1.7rem var(--mono); color: var(--accent-text); } .stat span { color: var(--muted); font-size: .85rem; }
     .shots { display:grid; grid-template-columns: 2.4fr 1fr; gap: 12px; margin-top: 22px; }
     .shots img { width:100%; border-radius: 12px; border:1px solid var(--line); background:#0f151c; height: 100%; max-height: 360px; object-fit: contain; }
+    .shots { perspective: 900px; }
+    .shots img { transform: rotateX(var(--srx, 0deg)) rotateY(var(--sry, 0deg)) scale(var(--ss, 1)); transition: transform .18s ease-out, box-shadow .25s, border-color .25s; cursor: zoom-in; will-change: transform; }
+    .shots img:hover { --ss: 1.05; border-color: var(--accent); box-shadow: 0 30px 60px -24px hsla(var(--h), 90%, 55%, .55); }
+    .shots img.pop { animation: shotPop .65s cubic-bezier(.2, 1.4, .4, 1); }
+    @keyframes shotPop { 0% { transform: scale(1); } 35% { transform: scale(1.12) rotateY(-14deg) rotateX(6deg); } 70% { transform: scale(.97) rotateY(6deg); } 100% { transform: scale(1.05); } }
+    .stat, .box, .node, .layer { transition: transform .2s ease-out, border-color .2s; }
+    .stat:hover, .box:hover, .node:hover { transform: translateY(-4px); border-color: var(--accent); }
+    @media (prefers-reduced-motion: reduce) { .shots img, .shots img.pop { animation: none; transform: none; } }
     .grid2 { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .box { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
     .box h3 { margin: 0 0 6px; font-size: 1.02rem; } .box p, .box li { color: var(--muted); font-size: .93rem; margin: 0; }
@@ -212,5 +220,46 @@
   </section>
 </main>
 <footer>Ram Mukesh Yadav · Founder, Clinora · <a href="index.html">Portfolio</a> · <a href="resume.html">Resume</a></footer>
+<script>
+(() => {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const $$ = s => [...document.querySelectorAll(s)];
+  // screenshots: strong 3D tilt + click pop
+  $$(".shots img").forEach(img => {
+    img.addEventListener("pointermove", e => {
+      if (reduce) return;
+      const r = img.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      img.style.setProperty("--sry", ((x - 0.5) * 26).toFixed(2) + "deg");
+      img.style.setProperty("--srx", ((0.5 - y) * 20).toFixed(2) + "deg");
+    });
+    img.addEventListener("pointerleave", () => { img.style.setProperty("--srx", "0deg"); img.style.setProperty("--sry", "0deg"); });
+    img.addEventListener("click", () => { if (reduce) return; img.classList.remove("pop"); void img.offsetWidth; img.classList.add("pop"); });
+  });
+  // word flip: on open, on click and whenever a block scrolls back into view
+  if (reduce) return;
+  const SEL = "h1, h2, h3, p, li, .btn, .tag, .stat b, .stat span, .node b, .node span, .layer, td, th, .chip, .back, .logo, footer";
+  const SKIP = "script, style, svg, img";
+  const G = "!<>-_\\/[]{}=+*^?#01ABCDEFGHXYZ@$%&";
+  const all = $$(SEL), blocks = all.filter(el => !all.some(o => o !== el && o.contains(el)));
+  const orig = new WeakMap();
+  const nodesOf = el => { const out = [], w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, { acceptNode: n => n.nodeValue.trim() && !n.parentElement.closest(SKIP) ? 1 : 2 }); while (w.nextNode()) out.push(w.currentNode); return out; };
+  function flip(el) {
+    if (el._f) return; const nodes = nodesOf(el); if (!nodes.length) return;
+    nodes.forEach(n => { if (!n._b) orig.set(n, n.nodeValue); n._b = true; });
+    el._f = true; let f = 0; const total = 24;
+    const t = setInterval(() => {
+      f++; const p = f / total;
+      for (const n of nodes) { const real = orig.get(n); n.nodeValue = [...real].map((c, i) => (/\s/.test(c) || i < p * real.length) ? c : G[(Math.random() * G.length) | 0]).join(""); }
+      if (f >= total) { clearInterval(t); nodes.forEach(n => { n.nodeValue = orig.get(n); n._b = false; }); el._f = false; }
+    }, 30);
+  }
+  const onScreen = el => { const r = el.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight; };
+  requestAnimationFrame(() => blocks.filter(onScreen).forEach((el, i) => setTimeout(() => flip(el), Math.min(i * 25, 600))));
+  const seen = new WeakSet();
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { if (seen.has(e.target)) flip(e.target); } else seen.add(e.target); }), { threshold: 0.35 });
+  blocks.forEach(el => { if (!onScreen(el)) seen.add(el); io.observe(el); });
+  document.addEventListener("click", e => { const b = blocks.find(x => x.contains(e.target)); if (b) flip(b); });
+})();
+</script>
 </body>
 </html>

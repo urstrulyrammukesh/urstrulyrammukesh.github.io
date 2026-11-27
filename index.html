@@ -410,6 +410,18 @@
     .cform button { border: 0; cursor: pointer; }
     @media (max-width: 560px) { .cform-row { grid-template-columns: 1fr; } }
     .foot-links { display: flex; gap: 14px; flex-wrap: wrap; } .foot-links a:hover { color: var(--accent-text); }
+
+    /* ---------- screenshots: 3D tilt, lift and click pop ---------- */
+    .shots { perspective: 900px; }
+    .shots img { transform: rotateX(var(--srx, 0deg)) rotateY(var(--sry, 0deg)) scale(var(--ss, 1));
+      transition: transform .18s ease-out, box-shadow .25s, border-color .25s; cursor: zoom-in; will-change: transform; }
+    .shots img:hover { --ss: 1.05; border-color: var(--accent); box-shadow: 0 30px 60px -24px hsla(var(--h), 90%, 55%, .55); }
+    .shots img.pop { animation: shotPop .65s cubic-bezier(.2, 1.4, .4, 1); }
+    @keyframes shotPop { 0% { transform: scale(1); } 35% { transform: scale(1.12) rotateY(-14deg) rotateX(6deg); } 70% { transform: scale(.97) rotateY(6deg); } 100% { transform: scale(1.05); } }
+    .card.pop { animation: cardPop .55s cubic-bezier(.2, 1.4, .4, 1); }
+    @keyframes cardPop { 40% { transform: perspective(900px) scale(1.025) rotateX(4deg); } }
+    .flipping { cursor: default; }
+    html.fx-off .shots img, html.fx-off .shots img.pop, html.fx-off .card.pop { animation: none; transform: none; }
   </style>
 </head>
 <body>
@@ -882,8 +894,8 @@
       card.addEventListener("pointermove", e => {
         if (e.pointerType !== "mouse") return;
         const r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height, M = FX.motion;
-        card.style.setProperty("--ry", ((x - 0.5) * 10 * M).toFixed(2) + "deg");
-        card.style.setProperty("--rx", ((0.5 - y) * 8 * M).toFixed(2) + "deg");
+        card.style.setProperty("--ry", ((x - 0.5) * 16 * M).toFixed(2) + "deg");
+        card.style.setProperty("--rx", ((0.5 - y) * 12 * M).toFixed(2) + "deg");
         card.style.setProperty("--mx", x * 100 + "%"); card.style.setProperty("--my", y * 100 + "%");
       });
       card.addEventListener("pointerleave", () => { card.style.setProperty("--rx", "0deg"); card.style.setProperty("--ry", "0deg"); });
@@ -973,6 +985,91 @@
         const body = m + "\n\n— " + n + " (" + em + ")";
         location.href = "mailto:" + email + "?subject=" + encodeURIComponent(t + " · from " + n) + "&body=" + encodeURIComponent(body);
         $("#cformNote").textContent = "Your email app should open now. If it doesn't, write to " + email;
+      });
+    })();
+
+
+    /* ================= SCREENSHOTS: strong 3D tilt + click pop ================= */
+    $$(".shots img").forEach(img => {
+      img.addEventListener("pointermove", e => {
+        if (FX.motion <= 0) return;
+        const r = img.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height, M = FX.motion;
+        img.style.setProperty("--sry", ((x - 0.5) * 26 * M).toFixed(2) + "deg");
+        img.style.setProperty("--srx", ((0.5 - y) * 20 * M).toFixed(2) + "deg");
+      });
+      img.addEventListener("pointerleave", () => { img.style.setProperty("--srx", "0deg"); img.style.setProperty("--sry", "0deg"); });
+      img.addEventListener("click", e => {
+        e.preventDefault(); e.stopPropagation();
+        if (FX.motion <= 0) return;
+        img.classList.remove("pop"); void img.offsetWidth; img.classList.add("pop");
+        const card = img.closest(".card"); if (card) { card.classList.remove("pop"); void card.offsetWidth; card.classList.add("pop"); }
+      });
+    });
+
+    /* ================= WORD FLIP: every text block decrypts on open, on click and when scrolled into view ================= */
+    (() => {
+      const SEL = "h1, h2, h3, h4, p, li, label, small, .chip, .btn, .nav-links a, .logo, .tag, .pill, .card-link, .ach-num, .when, .reach-card b, .stat-card a, .paper-btn, footer span, .row-item b";
+      const SKIP = "#term, #learn, .scramble, script, style, svg, input, textarea, select, option, #fxPanel, .cursor";
+      const FLIP_G = "!<>-_\\/[]{}=+*^?#01ABCDEFGHXYZ@$%&";
+      const all = $$(SEL).filter(el => !el.closest(SKIP));
+      const blocks = all.filter(el => !all.some(o => o !== el && o.contains(el)));   // outermost only, no double flips
+      const orig = new WeakMap();                                                    // text node -> real text
+
+      function textNodes(el) {
+        const out = [], w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+          acceptNode: n => (!n.nodeValue.trim() || n.parentElement.closest(SKIP)) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT
+        });
+        while (w.nextNode()) out.push(w.currentNode);
+        return out;
+      }
+      function flip(el, speed = 1) {
+        if (FX.motion <= 0 || el._flipping) return;
+        const nodes = textNodes(el); if (!nodes.length) return;
+        nodes.forEach(n => { if (!orig.has(n) || !n._busy) orig.set(n, n.nodeValue); n._busy = true; });
+        el._flipping = true; el.classList.add("flipping");
+        const total = Math.round(16 + 10 / speed); let f = 0;
+        const t = setInterval(() => {
+          f++;
+          const p = f / total;
+          for (const n of nodes) {
+            const real = orig.get(n);
+            n.nodeValue = [...real].map((ch, i) => (/\s/.test(ch) || i < p * real.length) ? ch : FLIP_G[(Math.random() * FLIP_G.length) | 0]).join("");
+          }
+          if (f >= total) {
+            clearInterval(t);
+            nodes.forEach(n => { n.nodeValue = orig.get(n); n._busy = false; });
+            el._flipping = false; el.classList.remove("flipping");
+          }
+        }, 30);
+      }
+      window.flipText = flip;
+
+      // 1) on open: everything currently on screen flips once
+      const onScreen = el => { const r = el.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight; };
+      requestAnimationFrame(() => blocks.filter(onScreen).forEach((el, i) => setTimeout(() => flip(el), Math.min(i * 25, 600))));
+
+      // 2) on scroll: a block flips every time it comes back into view
+      const seen = new WeakSet();
+      const io = new IntersectionObserver(entries => {
+        for (const e of entries) {
+          if (e.isIntersecting) { if (seen.has(e.target)) flip(e.target); }
+          else seen.add(e.target);
+        }
+      }, { threshold: 0.35 });
+      blocks.forEach(el => { if (onScreen(el)) io.observe(el); else { seen.add(el); io.observe(el); } });
+      // section headings keep their own decrypt effect: replay it on scroll-in and on click too
+      const heads = $$(".scramble"), seenH = new WeakSet();
+      const ioH = new IntersectionObserver(entries => {
+        for (const e of entries) { if (e.isIntersecting) { if (seenH.has(e.target)) scramble(e.target); } else seenH.add(e.target); }
+      }, { threshold: 0.5 });
+      heads.forEach(h => { ioH.observe(h); h.style.cursor = "pointer"; h.addEventListener("click", () => scramble(h)); });
+
+      // 3) on click: the clicked text flips again (links still work)
+      document.addEventListener("click", e => {
+        const el = e.target.closest && e.target.closest(SEL);
+        if (!el || el.closest(SKIP)) return;
+        const block = blocks.find(b => b.contains(el)) || el;
+        flip(block, 1.4);
       });
     })();
 

@@ -14,12 +14,14 @@
   <meta property="og:title" content="Ram Mukesh Yadav · CSE @ NIT Srinagar · Aspiring Cybersecurity Engineer" />
   <meta property="og:description" content="Portfolio of Ram Mukesh Yadav, Computer Science & Engineering student at NIT Srinagar, building Clinora and learning cybersecurity." />
   <meta property="og:url" content="https://urstrulyrammukesh.github.io/" />
-  <meta property="og:image" content="https://urstrulyrammukesh.github.io/assets/hero.jpg" />
-  <meta property="og:image:alt" content="Glowing cybersecurity shield above a circuit board" />
+  <meta property="og:image" content="https://urstrulyrammukesh.github.io/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Ram Mukesh Yadav · B.Tech CSE @ NIT Srinagar · Aspiring Cybersecurity Engineer" />
   <meta property="og:site_name" content="Ram Mukesh Yadav" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Ram Mukesh Yadav · CSE @ NIT Srinagar · Aspiring Cybersecurity Engineer" />
-  <meta name="twitter:image" content="https://urstrulyrammukesh.github.io/assets/hero.jpg" />
+  <meta name="twitter:image" content="https://urstrulyrammukesh.github.io/assets/og-image.jpg" />
   <meta name="theme-color" content="#0b0f14" />
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0f14'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='monospace' font-size='34' font-weight='700' fill='%239fef00'%3E%3E_%3C/text%3E%3C/svg%3E" />
@@ -394,6 +396,20 @@
     @media (max-width: 560px) { .ach { grid-template-columns: 1fr 1fr; } .ach-num { font-size: 1.6rem; } }
     html.fx-off .now-box .pulse { animation: none; }
     @media (max-width: 560px) { nav .logo span { display: none; } }
+
+    .cform { max-width: 620px; margin: 0 auto 26px; text-align: left; display: grid; gap: 12px; background: var(--card);
+      border: 1px solid hsla(var(--h), 40%, 40%, .28); border-radius: var(--radius); padding: 20px; }
+    .cform-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .cform label { display: grid; gap: 6px; font: 600 .72rem var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    .cform input, .cform textarea, .cform select { font: 400 .95rem var(--sans); color: var(--text); background: var(--bg); border: 1px solid var(--line);
+      border-radius: 10px; padding: 10px 12px; text-transform: none; letter-spacing: 0; width: 100%; }
+    .cform input:focus, .cform textarea:focus, .cform select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+    .cform .bad { border-color: #ff6b6b; }
+    .cform-foot { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .cform-foot small { color: var(--muted); font-size: .8rem; }
+    .cform button { border: 0; cursor: pointer; }
+    @media (max-width: 560px) { .cform-row { grid-template-columns: 1fr; } }
+    .foot-links { display: flex; gap: 14px; flex-wrap: wrap; } .foot-links a:hover { color: var(--accent-text); }
   </style>
 </head>
 <body>
@@ -452,7 +468,7 @@
         <p class="sub drift" data-depth="5">Computer Science &amp; Engineering student at <strong>NIT Srinagar</strong>. I build with <strong>Python</strong> and the web, and I'm learning to break and defend systems.</p>
         <div class="cta drift" data-depth="4">
           <a class="btn primary" href="#projects">See my work</a>
-          <a class="btn" href="resume.html">📄 Resume</a>
+          <a class="btn" href="assets/Ram-Mukesh-Yadav-Resume.pdf" download="Ram-Mukesh-Yadav-Resume.pdf">⬇ Download CV (PDF)</a>
           <a class="btn" href="https://github.com/urstrulyrammukesh" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
             GitHub
@@ -568,6 +584,7 @@
             </div>
             <div class="chips"><span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">HTML/CSS</span><span class="chip">AI</span><span class="chip">PWA</span><span class="chip">Security</span><span class="chip">Payments</span><span class="chip">WhatsApp API</span></div>
             <a class="paper-btn" href="https://clinora-cwxu.onrender.com" target="_blank" rel="noopener">🌐 Open the live demo <small>clinora-cwxu.onrender.com</small></a>
+            <a class="paper-btn" href="clinora.html">📖 Read the case study <small>architecture · security · lessons</small></a>
             <a class="paper-btn" href="assets/Clinora-Company-Overview.pdf" target="_blank" rel="noopener">📄 Read the Clinora paper <small>PDF · 35 pages</small></a>
           </article>
           <article class="card reveal tilt">
@@ -697,6 +714,16 @@
             <span class="reach-ico">📄</span><span><small>Clinora company overview</small><b>Read the full paper (PDF, 35 pages)</b></span>
           </a>
         </div>
+
+        <form class="cform" id="cform" novalidate>
+          <div class="cform-row">
+            <label>Your name<input name="name" required maxlength="80" autocomplete="name" /></label>
+            <label>Your email<input name="email" type="email" required maxlength="120" autocomplete="email" /></label>
+          </div>
+          <label>Subject<select name="topic"><option>Internship opportunity</option><option>Collaboration</option><option>Security study group</option><option>About Clinora</option><option>Something else</option></select></label>
+          <label>Message<textarea name="msg" required rows="4" maxlength="2000" placeholder="Hi Ram, ..."></textarea></label>
+          <div class="cform-foot"><button class="btn primary" type="submit">✉️ Send message</button><small id="cformNote">Opens your email app with the message ready to send.</small></div>
+        </form>
         <div class="socials">
           <a class="btn primary drift" data-depth="8" href="https://www.linkedin.com/in/ram-mukesh-yadav-033336412/" target="_blank" rel="noopener">LinkedIn</a>
           <a class="btn drift" data-depth="10" href="https://github.com/urstrulyrammukesh" target="_blank" rel="noopener">GitHub</a>
@@ -712,7 +739,7 @@
   <footer>
     <div class="wrap">
       <span>© <span id="year">2026</span> Ram Mukesh Yadav · NIT Srinagar</span>
-      <span>built with HTML, CSS &amp; JS · hosted on GitHub Pages</span>
+      <span class="foot-links"><a href="clinora.html">Clinora case study</a><a href="roadmap.html">Roadmap</a><a href="uses.html">Uses</a><a href="resume.html">Resume</a></span>
     </div>
   </footer>
 
@@ -933,6 +960,20 @@
       const mail = $("#mailCard"), phone = $("#phoneCard");
       mail.href = "mailto:" + email; $("#mailText").textContent = email;
       phone.href = "tel:+91" + digits; $("#phoneText").textContent = phoneShown;
+      const f = $("#cform");
+      if (f) f.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let ok = true;
+        for (const el of f.querySelectorAll("[required]")) {
+          const v = el.value.trim(), good = v && (el.type !== "email" || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v));
+          el.classList.toggle("bad", !good); ok = ok && good;
+        }
+        if (!ok) { $("#cformNote").textContent = "Please fill in your name, a valid email and a message."; return; }
+        const g = (k) => f.elements.namedItem(k).value.trim(); const n = g("name"), em = g("email"), t = g("topic"), m = g("msg");
+        const body = m + "\n\n— " + n + " (" + em + ")";
+        location.href = "mailto:" + email + "?subject=" + encodeURIComponent(t + " · from " + n) + "&body=" + encodeURIComponent(body);
+        $("#cformNote").textContent = "Your email app should open now. If it doesn't, write to " + email;
+      });
     })();
 
     applyFX();
